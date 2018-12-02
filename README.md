@@ -407,12 +407,27 @@ return{
 
 * RenderVideoList 用于渲染视频播放列表。当在播放页面，点击播放列表按钮,可返回RenderVideoList用于渲染UI
 
+### 页面栈 
+* PushStack 提供页面栈逻辑
+
+1、当技能开启，当前的页面为A，此时页面栈为空。   
+2、当通过语音或触控返回新的页面B,则A页面压栈，B为当前页面。    
+3、当点击屏幕返回按钮，此时B页面销毁，A页面从栈中弹出，成为当前展示页面。  
+4、以此类推，当栈中没有任何可弹出的页面时推出应用。      
+```python
+    pushStack = PushStack()
+    return{
+    'directives':[自己用来渲染页面的directive, pushStack]
+    }
+
+```
+    
 ### 权限申请
 1、AskForPermission 当技能需要获取用户权限:用户信息、位置信息等, 需要向用户进行权限申请。目前只支持用户权限的申请
 2、 比如获取用户信息权限如下
 ```python
 directive = AskForPermissionsConsent()
-directive.add_permission(PermissionEnum.PERMISSION_USER_INFO)
+directive.add_permission(PermissionEnum.READ_USER_PROFILE)
 
 ```
 3、 添加事件回调处理
@@ -707,34 +722,19 @@ pip install -r requirements.txt
 # 技能调试
 为了避免每次调试都要部署到服务器可以使用[ngrok](https://ngrok.com/)将请求数据转发到自己的机器上(注意:ngrok访问比较慢,有时会链接超时)
 
-# 完成过程记录
+# 变更记录
 
 * 版本变更详见变更记录 CHANGELOG.md
 
-2018-06-19 
-* 添加屏幕支持
-* 支持数据统计功能
-* 优化代码
 
-2018-01-12
-* Bot.py添加错误回调，用户可以调用setCallBack方法设置错误回调方法
-* 优化samples demo
-* 添加个税demo数据
+# Known Users
+按照登记顺序排序，更多接入技能，欢迎在 https://github.com/jokenwang/bot-sdk-python/issues/16 登记（仅供用户参考）
 
-
-2018-01-06
-
-* 完成拦截器
-* 完成会话
-* 完成指令处理
-
-===========================================
-
-### 鸣谢
+## 鸣谢
 [@gongqingliang821](https://github.com/gongqingliang821)
 
 ### 免责声明
 
-* 此SDK非官网提供，纯属个人学习研究，如因使用此SDK导致的任何损失，本人概不负责
+* 此SDK非官网提供，纯属个人学习研究，如因使用此SDK导致的任何损失，本人概不负责。
 
 

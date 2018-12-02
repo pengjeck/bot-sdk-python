@@ -18,6 +18,12 @@ class PermissionEnum(Enum):
     PERMISSION_LOCATION = 'LOCATION'
     PERMISSION_RECORD = 'RECORD'
 
+    #上面的即将废弃 请使用下面的三个新权限
+    READ_USER_PROFILE = 'READ::USER:PROFILE'
+    READ_DEVICE_LOCATION = 'READ::DEVICE:LOCATION'
+    WRITE_SMARTHOME_PRINTER = 'WRITE::SMARTHOME:PRINTER'
+    RECORD_SPEECH = 'RECORD::SPEECH'
+
     @staticmethod
     def inEnum(position):
         return position in PermissionEnum.__members__.values()
